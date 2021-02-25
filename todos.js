@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let newTask = document.createElement('li');
     newTask.innerText = task.task;
 
+    const button = document.createElement('button');
+    button.innerHTML = 'remove';
+    newTask.append(button);
+
     taskList.append(newTask);
   }
   // Add a new todo (by submitting a form)
@@ -17,13 +21,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const li = document.createElement('li');
     const button = document.createElement('button');
     button.innerHTML = 'remove';
+
     li.innerText = taskInput.value;
     li.append(button);
     ul.append(li);
 
     form.reset();
 
-    savedTasks.push({task: li.innerText});
+    savedTasks.push({task: li.childNodes.item(0).nodeValue});
     localStorage.setItem('tasks', JSON.stringify(savedTasks));
   });
 
